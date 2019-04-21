@@ -7,6 +7,11 @@ public interface EmailTemplateEngine {
                  String bodyTemplate, Map<String, Object> bodyArgs);
 
     class EmailEntity {
+        public EmailEntity(String title, String body) {
+            this.title = title;
+            this.body = body;
+        }
+
         public String title;
         public String body;
     }
