@@ -1,17 +1,39 @@
 package org.dynabiz.dynabizemailcenterserver.support.mq;
 
-import org.dynabiz.dynabizemailcenterserver.support.mail.MailSendHandler;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.dynabiz.dynabizemailcenterserver.support.mail.MailSendingHandler;
 import org.dynabiz.dynabizemailcenterserver.vos.MailSendingRequest;
-import org.dynabiz.dynabizemailcenterserver.vos.dto.SendEmailTransfer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.data.redis.core.StringRedisTemplate;
 
-public class RedisMessageQueueSupport implements MailMessageQueue {
-    @Override
-    public void push(MailSendingRequest request) {
+public class RedisMessageQueueSupport extends AbstractMailMessageQueue {
+    private static final Logger logger = LoggerFactory.getLogger(RedisMessageQueueSupport.class);
+    private StringRedisTemplate template;
+    private ObjectMapper mapper;
+
+
+    public RedisMessageQueueSupport(MailSendingHandler mailSendingHandler, StringRedisTemplate template,
+                                    ObjectMapper mapper) {
+        super(mailSendingHandler);
+        this.template = template;
+        this.mapper = mapper;
 
     }
 
     @Override
-    public void bindHandler(MailSendHandler handler) {
+    public void push(MailSendingRequest request) {
+        try {
+            template.convertAndSend("emailMQ", mapper.writeValueAsString(request));
+        } catch (JsonProcessingException e) {
+            logger.error(e.toString());
+        }
+    }
+
+
+    @Override
+    protected void handleRequest(MailSendingHandler handler) {
 
     }
 }

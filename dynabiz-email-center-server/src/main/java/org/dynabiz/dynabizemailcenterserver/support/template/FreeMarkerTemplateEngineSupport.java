@@ -4,6 +4,7 @@ import freemarker.cache.StringTemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import org.dynabiz.dynabizemailcenterserver.vos.entity.MailEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,7 +20,7 @@ public class FreeMarkerTemplateEngineSupport implements EmailTemplateEngine {
     }
 
     @Override
-    public EmailEntity apply(String titleTemplate, Map<String, Object> titleArgs, String bodyTemplate, Map<String, Object> bodyArgs) {
+    public MailEntity apply(String titleTemplate, Map<String, Object> titleArgs, String bodyTemplate, Map<String, Object> bodyArgs) {
         Configuration config = new Configuration(Configuration.VERSION_2_3_0);
         StringTemplateLoader stringLoader = new StringTemplateLoader();
         stringLoader.putTemplate("BODY_TEMPLATE", bodyTemplate);
@@ -38,6 +39,6 @@ public class FreeMarkerTemplateEngineSupport implements EmailTemplateEngine {
             logger.error("Can not apply template", e);
         }
 
-        return new EmailEntity(titleWriter.toString(), bodyWriter.toString());
+        return new MailEntity(titleWriter.toString(), bodyWriter.toString());
     }
 }
