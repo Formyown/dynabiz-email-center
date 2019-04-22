@@ -9,8 +9,9 @@ public class ThymeleafTemplateEngineSupport implements EmailTemplateEngine {
 
     public ThymeleafTemplateEngineSupport(){
     }
+
     @Override
-    public String apply(String template, Map<String, Object> args) {
+    public EmailEntity apply(String titleTemplate, Map<String, Object> titleArgs, String bodyTemplate, Map<String, Object> bodyArgs) {
         return null;
     }
 }

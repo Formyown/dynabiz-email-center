@@ -1,7 +1,7 @@
 package org.dynabiz.dynabizemailcenterserver.configuration;
 
 import com.rabbitmq.client.Channel;
-import org.dynabiz.dynabizemailcenterserver.support.mq.EmailMessageQueue;
+import org.dynabiz.dynabizemailcenterserver.support.mq.MailMessageQueue;
 import org.dynabiz.dynabizemailcenterserver.support.mq.RabbitMessageQueueSupport;
 import org.dynabiz.dynabizemailcenterserver.support.mq.RedisMessageQueueSupport;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -15,13 +15,13 @@ public class MessageQueueAutoConfiguration {
 
     @ConditionalOnClass({ RabbitTemplate.class, Channel.class })
     @Bean
-    public EmailMessageQueue rabbitMqSupport(){
+    public MailMessageQueue rabbitMqSupport(){
         return new RabbitMessageQueueSupport();
     }
 
     @ConditionalOnClass(RedisOperations.class)
     @Bean
-    public EmailMessageQueue redisMqSupport(){
+    public MailMessageQueue redisMqSupport(){
         return new RedisMessageQueueSupport();
     }
 }

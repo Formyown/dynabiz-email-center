@@ -3,6 +3,7 @@ package org.dynabiz.dynabizemailcenterserver.support.template;
 import freemarker.cache.StringTemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
+import freemarker.template.TemplateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,21 +27,17 @@ public class FreeMarkerTemplateEngineSupport implements EmailTemplateEngine {
         config.setTemplateLoader(stringLoader);
 
 
-
+        StringWriter bodyWriter = new StringWriter();
+        StringWriter titleWriter = new StringWriter();
         try {
-            Template bodyTemplate = config.getTemplate("BODY_TEMPLATE","utf-8");
-            Template titleTemplate = config.getTemplate("TITLE_TEMPLATE","utf-8");
-
-            StringWriter contentWriter = new StringWriter();
-            bodyTemplate.process(dataEntity, contentWriter);
-
-            StringWriter titleWriter = new StringWriter();
-            titleTemplate.process(dataEntity, titleWriter);
-        } catch (IOException e) {
-            e.printStackTrace();
+            Template templateInstance = config.getTemplate("BODY_TEMPLATE","utf-8");
+            templateInstance.process(bodyArgs, bodyWriter);
+            templateInstance = config.getTemplate("TITLE_TEMPLATE","utf-8");
+            templateInstance.process(titleArgs, titleWriter);
+        } catch (IOException | TemplateException e) {
+            logger.error("Can not apply template", e);
         }
 
-
-        return null;
+        return new EmailEntity(titleWriter.toString(), bodyWriter.toString());
     }
 }
