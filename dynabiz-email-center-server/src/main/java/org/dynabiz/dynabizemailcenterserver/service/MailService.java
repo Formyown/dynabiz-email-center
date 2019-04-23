@@ -1,14 +1,20 @@
 package org.dynabiz.dynabizemailcenterserver.service;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.dynabiz.dynabizemailcenterserver.repository.MailTemplateTestDataRepository;
+import org.dynabiz.dynabizemailcenterserver.vos.dto.SendEmailTransfer;
+import org.dynabiz.dynabizemailcenterserver.vos.entity.MailTemplateTestData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 @Service
-public class EmailService {
-    private static final Logger logger = LoggerFactory.getLogger(EmailService.class);
+public class MailService {
+    private static final Logger logger = LoggerFactory.getLogger(MailService.class);
     private StringRedisTemplate template;
     private ObjectMapper mapper;
     private MailTemplateTestDataRepository testDataRepository;
@@ -34,9 +40,9 @@ public class EmailService {
 
     }
 
-    public EmailService(StringRedisTemplate template,
-                        ObjectMapper mapper,
-                        MailTemplateTestDataRepository testDataRepository) {
+    public MailService(StringRedisTemplate template,
+                       ObjectMapper mapper,
+                       MailTemplateTestDataRepository testDataRepository) {
         this.template = template;
         this.mapper = mapper;
         this.testDataRepository = testDataRepository;

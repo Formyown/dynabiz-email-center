@@ -1,8 +1,9 @@
 package org.dynabiz.dynabizemailcenterserver.repository;
 
-import com.timescodes.dawn.timescodingdawnmsmainmailifv1.vos.entity.MailTemplateTestData;
-import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface MailTemplateTestDataRepository extends MongoRepository<MailTemplateTestData, String> {
+import org.dynabiz.dynabizemailcenterserver.vos.entity.MailTemplateTestData;
+import org.springframework.data.repository.CrudRepository;
+
+public interface MailTemplateTestDataRepository extends CrudRepository<MailTemplateTestData, String> {
 
 }

@@ -9,6 +9,9 @@ public class SendEmailTransfer implements Serializable {
     private String email;
     private String data;
 
+    public SendEmailTransfer() {
+    }
+
     public SendEmailTransfer(String name, String email, String data) {
         this.name = name;
         this.email = email;

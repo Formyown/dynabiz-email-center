@@ -12,7 +12,9 @@ public abstract class AbstractMailMessageQueue {
         this.handler = handler;
     }
 
-    protected abstract void handleRequest(MailSendingHandler handler);
+    protected void handleRequest(MailSendingRequest request){
+        this.handler.send(request);
+    }
 
     public abstract void push(MailSendingRequest request);
 }

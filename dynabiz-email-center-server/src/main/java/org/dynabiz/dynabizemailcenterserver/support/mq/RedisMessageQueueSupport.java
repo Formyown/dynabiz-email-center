@@ -8,6 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
+import java.io.IOException;
+
 public class RedisMessageQueueSupport extends AbstractMailMessageQueue {
     private static final Logger logger = LoggerFactory.getLogger(RedisMessageQueueSupport.class);
     private StringRedisTemplate template;
@@ -31,9 +33,12 @@ public class RedisMessageQueueSupport extends AbstractMailMessageQueue {
         }
     }
 
-
-    @Override
-    protected void handleRequest(MailSendingHandler handler) {
-
+    //default method name is "handleMessage"
+    public void handleMessage(String msgJson){
+        try {
+            handleRequest(mapper.readValue(msgJson, MailSendingRequest.class));
+        } catch (IOException e) {
+            logger.error(e.toString());
+        }
     }
 }

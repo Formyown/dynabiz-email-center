@@ -1,7 +1,7 @@
 package org.dynabiz.dynabizemailcenterserver.controller;
 
 
-import org.dynabiz.dynabizemailcenterserver.service.EmailService;
+import org.dynabiz.dynabizemailcenterserver.service.MailService;
 import org.dynabiz.dynabizemailcenterserver.vos.dto.SendEmailTransfer;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/mail")
 @RestController
 public class MailMessageController {
-    private EmailService emailService;
+    private MailService emailService;
 
     /**
      * 发送邮件
@@ -27,7 +27,7 @@ public class MailMessageController {
         emailService.sendTestData(id);
     }
 
-    public MailMessageController(EmailService emailService) {
+    public MailMessageController(MailService emailService) {
         this.emailService = emailService;
     }
 }

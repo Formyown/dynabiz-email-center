@@ -1,13 +1,17 @@
 package org.dynabiz.dynabizemailcenterserver.service;
 
 
+import org.dynabiz.dynabizemailcenterserver.repository.MailTemplateTestDataRepository;
+import org.dynabiz.dynabizemailcenterserver.vos.dto.UploadTemplateTestDataTransfer;
+import org.dynabiz.dynabizemailcenterserver.vos.entity.MailTemplateTestData;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 @Service
 public class MailTemplateTestService {
     private MailTemplateTestDataRepository repository;
 
-    public void upload(@Validated UploadTemplateTestDataTransfer dto) {
+    public void upload(UploadTemplateTestDataTransfer dto) {
         MailTemplateTestData data = new MailTemplateTestData();
         dto.mapTo(data);
         repository.save(data);

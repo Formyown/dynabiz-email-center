@@ -1,6 +1,9 @@
 package org.dynabiz.dynabizemailcenterserver.repository;
 
 
-public interface MailTemplateRepository extends MongoRepository<MailTemplate, String> {
+import org.dynabiz.dynabizemailcenterserver.vos.entity.MailTemplate;
+import org.springframework.data.repository.CrudRepository;
+
+public interface MailTemplateRepository extends CrudRepository<MailTemplate, String> {
     MailTemplate findByName(String name);
 }

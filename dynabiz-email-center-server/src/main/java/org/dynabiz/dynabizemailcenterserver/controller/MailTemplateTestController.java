@@ -1,6 +1,11 @@
 package org.dynabiz.dynabizemailcenterserver.controller;
 
 
+import org.dynabiz.dynabizemailcenterserver.service.MailTemplateTestService;
+import org.dynabiz.dynabizemailcenterserver.vos.dto.UploadTemplateTestDataTransfer;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("mail/template/test")
 @RestController
@@ -12,7 +17,7 @@ public class MailTemplateTestController {
      * @param data
      */
     @PostMapping
-    public void uploadTemplate(@Validated UploadTemplateTestDataTransfer data, BindingResult bindingResult){
+    public void uploadTemplate(@Validated UploadTemplateTestDataTransfer data){
         testService.upload(data);
     }
 
@@ -21,7 +26,7 @@ public class MailTemplateTestController {
      * @param id
      */
     @DeleteMapping("/{id}")
-    public void deleteTemplate(@PathVariable @NotBlank String id){
+    public void deleteTemplate(@PathVariable String id){
         testService.delete(id);
     }
 
@@ -30,7 +35,7 @@ public class MailTemplateTestController {
      * @param template
      */
     @PutMapping()
-    public void modifyTemplate(@NotBlank String id , @Validated UploadTemplateTestDataTransfer template,
+    public void modifyTemplate(String id , @Validated UploadTemplateTestDataTransfer template,
                                BindingResult bindingResult){
 
         testService.modify(id, template);

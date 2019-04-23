@@ -5,6 +5,8 @@ import org.dynabiz.dynabizemailcenterserver.service.MailTemplateService;
 import org.dynabiz.dynabizemailcenterserver.vos.dto.UploadTemplateTransfer;
 import org.dynabiz.dynabizemailcenterserver.vos.entity.MailTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("mail/template")
@@ -45,7 +47,7 @@ public class MailTemplateController {
      * @return Page<MailTemplate>
      */
     @GetMapping
-    public Page<MailTemplate> getAllTemplates(PageRequestTransfer pageRequestTransfer){
+    public Page<MailTemplate> getAllTemplates(Pageable pageRequestTransfer){
         return mailTemplateService.getTemplates(pageRequestTransfer);
     }
 

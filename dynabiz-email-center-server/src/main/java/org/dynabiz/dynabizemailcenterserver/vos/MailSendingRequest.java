@@ -1,19 +1,27 @@
 package org.dynabiz.dynabizemailcenterserver.vos;
 
 public class MailSendingRequest {
+    private String subject;
     private String body;
-    private String title;
     private String toAddress;
     private String fromAddress;
 
     public MailSendingRequest() {
     }
 
-    public MailSendingRequest(String body, String title, String toAddress, String fromAddress) {
+    public MailSendingRequest(String subject, String body, String toAddress, String fromAddress) {
+        this.subject = subject;
         this.body = body;
-        this.title = title;
         this.toAddress = toAddress;
         this.fromAddress = fromAddress;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 
     public String getBody() {
@@ -22,14 +30,6 @@ public class MailSendingRequest {
 
     public void setBody(String body) {
         this.body = body;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public String getToAddress() {

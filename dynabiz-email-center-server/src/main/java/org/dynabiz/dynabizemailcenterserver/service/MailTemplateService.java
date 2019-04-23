@@ -1,23 +1,16 @@
 package org.dynabiz.dynabizemailcenterserver.service;
 
-import com.as.common.Assert;
-import com.as.exception.PermissionException;
-import com.as.exception.RepositoryException;
-import com.as.web.data.pageable.PageRequestTransfer;
-import com.timescodes.dawn.timescodingdawnmsmainmailifv1.repository.MailTemplateRepository;
-import com.timescodes.dawn.timescodingdawnmsmainmailifv1.vos.dto.UploadTemplateTransfer;
-import com.timescodes.dawn.timescodingdawnmsmainmailifv1.vos.entity.MailTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import org.dynabiz.dynabizemailcenterserver.vos.entity.MailTemplate;
 import org.springframework.data.domain.Page;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+import java.sql.Date;
 
 @Service
 public class MailTemplateService {
     private MailTemplateRepository mailTemplateRepository;
-    private RedisTemplate redisTemplate;
+
 
 
     public void uploadTemplate(UploadTemplateTransfer template){
