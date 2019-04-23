@@ -36,7 +36,12 @@
         </dependency>
         <dependency>
             <groupId>org.dynabiz</groupId>
-            <artifactId>dynabiz-spring</artifactId>
+            <artifactId>dynabiz-core</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dynabiz</groupId>
+            <artifactId>dynabiz-std-exceptions</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 

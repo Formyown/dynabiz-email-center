@@ -3,6 +3,10 @@ package org.dynabiz.dynabizemailcenterserver.controller;
 
 import org.dynabiz.dynabizemailcenterserver.service.MailTemplateTestService;
 import org.dynabiz.dynabizemailcenterserver.vos.dto.UploadTemplateTestDataTransfer;
+import org.dynabiz.dynabizemailcenterserver.vos.entity.MailTemplateTestData;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -43,12 +47,12 @@ public class MailTemplateTestController {
 
     /**
      * 获取测试数据
-     * @param pageRequestTransfer 分页信息
+     * @param pageRequest 分页信息
      * @return Page<MailTemplate>
      */
     @GetMapping
-    public Page<MailTemplateTestData> getAllTemplates(PageRequestTransfer pageRequestTransfer){
-        return testService.getAll(pageRequestTransfer);
+    public Page<MailTemplateTestData> getAllTemplates(Pageable pageRequest){
+        return testService.getAll(pageRequest);
     }
 
     public MailTemplateTestController(MailTemplateTestService testService) {

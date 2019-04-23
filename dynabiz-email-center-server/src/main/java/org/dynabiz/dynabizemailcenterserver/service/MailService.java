@@ -6,11 +6,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.dynabiz.dynabizemailcenterserver.repository.MailTemplateTestDataRepository;
 import org.dynabiz.dynabizemailcenterserver.vos.dto.SendEmailTransfer;
 import org.dynabiz.dynabizemailcenterserver.vos.entity.MailTemplateTestData;
+import org.dynabiz.std.exception.RepositoryException;
+import org.dynabiz.util.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.util.Assert;
 
 @Service
 public class MailService {
@@ -30,7 +31,7 @@ public class MailService {
     }
 
     public void sendTestData(String id){
-        MailTemplateTestData testData = Assert.notNull(testDataRepository.findById(id), RepositoryException.notFound());
+        MailTemplateTestData testData = Assert.notNull(testDataRepository.findById(id), RepositoryException.ITEM_NOT_FOUND);
         SendEmailTransfer data = new SendEmailTransfer();
         data.setEmail(testData.getEmail());
         data.setData(testData.getData());

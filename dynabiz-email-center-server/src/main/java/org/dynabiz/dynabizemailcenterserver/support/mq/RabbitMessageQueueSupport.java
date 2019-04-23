@@ -10,10 +10,7 @@ public class RabbitMessageQueueSupport extends AbstractMailMessageQueue {
         super(handler);
     }
 
-    @Override
-    protected void handleRequest(MailSendingHandler handler) {
 
-    }
 
     @Override
     public void push(MailSendingRequest request) {

@@ -43,12 +43,12 @@ public class MailTemplateController {
 
     /**
      * 获取所有模板
-     * @param pageRequestTransfer 分页信息
+     * @param pageRequest 分页信息
      * @return Page<MailTemplate>
      */
     @GetMapping
-    public Page<MailTemplate> getAllTemplates(Pageable pageRequestTransfer){
-        return mailTemplateService.getTemplates(pageRequestTransfer);
+    public Page<MailTemplate> getAllTemplates(Pageable pageRequest){
+        return mailTemplateService.getTemplates(pageRequest);
     }
 
     @Autowired
