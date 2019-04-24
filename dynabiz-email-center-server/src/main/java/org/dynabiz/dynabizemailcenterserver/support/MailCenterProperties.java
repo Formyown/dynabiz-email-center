@@ -1,8 +1,12 @@
 package org.dynabiz.dynabizemailcenterserver.support;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.stereotype.Component;
 
-
+@Component
+@EnableConfigurationProperties
+@ConfigurationProperties(prefix="mail-center.server")
 public class MailCenterProperties {
     public enum LogLevel{
         TITLE("title"),

@@ -1,4 +1,4 @@
-package org.dynabiz.dynabizemailcenterserver.configuration;
+package org.dynabiz.dynabizemailcenterserver.configuration.auto;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rabbitmq.client.Channel;
@@ -25,7 +25,7 @@ import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
 @ConditionalOnMissingBean(AbstractMailMessageQueue.class)
 public class MessageQueueAutoConfiguration {
 
-    @ConditionalOnProperty(value = "mail-center.server.mq", havingValue = "rabbit")
+    @ConditionalOnProperty(name = "mail-center.server.mq", havingValue = "rabbit")
     @ConditionalOnClass({ RabbitTemplate.class, Channel.class })
     @Bean
     public AbstractMailMessageQueue rabbitMqSupport(MailSendingRequestHandler handler){
@@ -39,7 +39,8 @@ public class MessageQueueAutoConfiguration {
     @Configuration
     @ConditionalOnClass(RedisOperations.class)
     @ConditionalOnBean(StringRedisTemplate.class)
-    @ConditionalOnProperty(value = "mail-center.server.mq", havingValue = "redis", matchIfMissing = true)
+    @ConditionalOnMissingBean(AbstractMailMessageQueue.class)
+    @ConditionalOnProperty(name = "mail-center.server.mq", havingValue = "redis", matchIfMissing = true)
     public static class Redis{
         @Bean
         public AbstractMailMessageQueue redisMqSupport(MailSendingRequestHandler handler, StringRedisTemplate stringRedisTemplate){

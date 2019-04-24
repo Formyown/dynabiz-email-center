@@ -1,5 +1,7 @@
 package org.dynabiz.dynabizemailcenterserver.configuration;
 
+import org.dynabiz.dynabizemailcenterserver.configuration.auto.MessageQueueAutoConfiguration;
+import org.dynabiz.dynabizemailcenterserver.configuration.auto.TemplateEngineAutoConfiguration;
 import org.dynabiz.dynabizemailcenterserver.support.mail.MailSender;
 import org.springframework.context.annotation.Import;
 
