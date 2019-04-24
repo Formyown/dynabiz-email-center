@@ -9,19 +9,19 @@ public class MailTemplate {
     private String name;
     private Date createAt;
     private Date modifyAt;
-    private String titleTemplate;
+    private String subjectTemplate;
     private String contentTemplate;
     private String description;
 
     public MailTemplate() {
     }
 
-    public MailTemplate(String id, String name, Date createAt, Date modifyAt, String titleTemplate, String contentTemplate, String description) {
+    public MailTemplate(String id, String name, Date createAt, Date modifyAt, String subjectTemplate, String contentTemplate, String description) {
         this.id = id;
         this.name = name;
         this.createAt = createAt;
         this.modifyAt = modifyAt;
-        this.titleTemplate = titleTemplate;
+        this.subjectTemplate = subjectTemplate;
         this.contentTemplate = contentTemplate;
         this.description = description;
     }
@@ -58,12 +58,12 @@ public class MailTemplate {
         this.modifyAt = modifyAt;
     }
 
-    public String getTitleTemplate() {
-        return titleTemplate;
+    public String getSubjectTemplate() {
+        return subjectTemplate;
     }
 
-    public void setTitleTemplate(String titleTemplate) {
-        this.titleTemplate = titleTemplate;
+    public void setSubjectTemplate(String subjectTemplate) {
+        this.subjectTemplate = subjectTemplate;
     }
 
     public String getContentTemplate() {
@@ -89,7 +89,7 @@ public class MailTemplate {
                 ", name='" + name + '\'' +
                 ", createAt=" + createAt +
                 ", modifyAt=" + modifyAt +
-                ", titleTemplate='" + titleTemplate + '\'' +
+                ", subjectTemplate='" + subjectTemplate + '\'' +
                 ", contentTemplate='" + contentTemplate + '\'' +
                 ", description='" + description + '\'' +
                 '}';
@@ -104,14 +104,14 @@ public class MailTemplate {
                 Objects.equals(name, that.name) &&
                 Objects.equals(createAt, that.createAt) &&
                 Objects.equals(modifyAt, that.modifyAt) &&
-                Objects.equals(titleTemplate, that.titleTemplate) &&
+                Objects.equals(subjectTemplate, that.subjectTemplate) &&
                 Objects.equals(contentTemplate, that.contentTemplate) &&
                 Objects.equals(description, that.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, createAt, modifyAt, titleTemplate, contentTemplate, description);
+        return Objects.hash(id, name, createAt, modifyAt, subjectTemplate, contentTemplate, description);
     }
 }
 

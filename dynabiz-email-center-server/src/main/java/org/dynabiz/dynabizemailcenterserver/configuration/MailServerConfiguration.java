@@ -12,5 +12,5 @@ import org.springframework.context.annotation.Import;
 @Configuration
 @Import({MailService.class, MailTemplateService.class, MailTemplateTestService.class,
         MailMessageController.class, MailTemplate.class, MailTemplateTestController.class})
-public class EmailServerConfiguration {
+public class MailServerConfiguration {
 }

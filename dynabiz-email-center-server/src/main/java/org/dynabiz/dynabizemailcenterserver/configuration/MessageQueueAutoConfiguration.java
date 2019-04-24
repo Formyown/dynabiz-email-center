@@ -2,15 +2,16 @@ package org.dynabiz.dynabizemailcenterserver.configuration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rabbitmq.client.Channel;
-import org.dynabiz.dynabizemailcenterserver.support.mail.MailSendingHandler;
+import org.dynabiz.dynabizemailcenterserver.service.MailSendingRequestHandler;
+import org.dynabiz.dynabizemailcenterserver.support.mail.MailSender;
 import org.dynabiz.dynabizemailcenterserver.support.mq.AbstractMailMessageQueue;
 import org.dynabiz.dynabizemailcenterserver.support.mq.RabbitMessageQueueSupport;
 import org.dynabiz.dynabizemailcenterserver.support.mq.RedisMessageQueueSupport;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -24,9 +25,10 @@ import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
 @ConditionalOnMissingBean(AbstractMailMessageQueue.class)
 public class MessageQueueAutoConfiguration {
 
+    @ConditionalOnProperty(value = "mail-center.server.mq", havingValue = "rabbit")
     @ConditionalOnClass({ RabbitTemplate.class, Channel.class })
     @Bean
-    public AbstractMailMessageQueue rabbitMqSupport(MailSendingHandler handler){
+    public AbstractMailMessageQueue rabbitMqSupport(MailSendingRequestHandler handler){
         return new RabbitMessageQueueSupport(handler);
     }
 
@@ -37,9 +39,10 @@ public class MessageQueueAutoConfiguration {
     @Configuration
     @ConditionalOnClass(RedisOperations.class)
     @ConditionalOnBean(StringRedisTemplate.class)
+    @ConditionalOnProperty(value = "mail-center.server.mq", havingValue = "redis", matchIfMissing = true)
     public static class Redis{
         @Bean
-        public AbstractMailMessageQueue redisMqSupport(MailSendingHandler handler, StringRedisTemplate stringRedisTemplate){
+        public AbstractMailMessageQueue redisMqSupport(MailSendingRequestHandler handler, StringRedisTemplate stringRedisTemplate){
             return new RedisMessageQueueSupport(handler, stringRedisTemplate, new ObjectMapper());
         }
 

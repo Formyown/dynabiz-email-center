@@ -1,8 +1,10 @@
 package org.dynabiz.dynabizemailcenterserver;
 
+import org.dynabiz.dynabizemailcenterserver.configuration.EnableMailCenterServer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+@EnableMailCenterServer
 @SpringBootApplication
 public class DynabizEmailCenterServerApplication {
 

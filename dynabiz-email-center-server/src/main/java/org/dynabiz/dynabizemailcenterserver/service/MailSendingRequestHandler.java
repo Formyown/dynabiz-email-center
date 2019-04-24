@@ -1,8 +1,7 @@
-package org.dynabiz.dynabizemailcenterserver.support.mail;
+package org.dynabiz.dynabizemailcenterserver.service;
 
 import org.dynabiz.dynabizemailcenterserver.vos.MailSendingRequest;
 
-
-public interface MailSendingHandler {
+public interface MailSendingRequestHandler {
     void send(MailSendingRequest mail);
 }

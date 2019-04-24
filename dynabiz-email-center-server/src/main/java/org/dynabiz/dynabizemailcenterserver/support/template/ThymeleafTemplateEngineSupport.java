@@ -1,17 +1,18 @@
 package org.dynabiz.dynabizemailcenterserver.support.template;
 
-import org.dynabiz.dynabizemailcenterserver.vos.entity.MailEntity;
+import org.dynabiz.dynabizemailcenterserver.vos.MailData;
 
 import java.util.Map;
 
-public class ThymeleafTemplateEngineSupport implements EmailTemplateEngine {
+public class ThymeleafTemplateEngineSupport implements MailTemplateEngine {
 
 
     public ThymeleafTemplateEngineSupport(){
     }
 
+
     @Override
-    public MailEntity apply(String titleTemplate, Map<String, Object> titleArgs, String bodyTemplate, Map<String, Object> bodyArgs) {
+    public MailData apply(String titleTemplate, String bodyTemplate, Map<String, Object> data) {
         return null;
     }
 }

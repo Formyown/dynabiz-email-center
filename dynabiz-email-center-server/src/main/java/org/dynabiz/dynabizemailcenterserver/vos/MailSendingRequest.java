@@ -1,35 +1,35 @@
 package org.dynabiz.dynabizemailcenterserver.vos;
 
+import java.util.Map;
+
 public class MailSendingRequest {
-    private String subject;
-    private String body;
+    private String templateName;
+    private Map<String, Object> args;
     private String toAddress;
-    private String fromAddress;
 
     public MailSendingRequest() {
     }
 
-    public MailSendingRequest(String subject, String body, String toAddress, String fromAddress) {
-        this.subject = subject;
-        this.body = body;
+    public MailSendingRequest(String templateName, Map<String, Object> args, String toAddress) {
+        this.templateName = templateName;
+        this.args = args;
         this.toAddress = toAddress;
-        this.fromAddress = fromAddress;
     }
 
-    public String getSubject() {
-        return subject;
+    public String getTemplateName() {
+        return templateName;
     }
 
-    public void setSubject(String subject) {
-        this.subject = subject;
+    public void setTemplateName(String templateName) {
+        this.templateName = templateName;
     }
 
-    public String getBody() {
-        return body;
+    public Map<String, Object> getArgs() {
+        return args;
     }
 
-    public void setBody(String body) {
-        this.body = body;
+    public void setArgs(Map<String, Object> args) {
+        this.args = args;
     }
 
     public String getToAddress() {
@@ -38,13 +38,5 @@ public class MailSendingRequest {
 
     public void setToAddress(String toAddress) {
         this.toAddress = toAddress;
-    }
-
-    public String getFromAddress() {
-        return fromAddress;
-    }
-
-    public void setFromAddress(String fromAddress) {
-        this.fromAddress = fromAddress;
     }
 }

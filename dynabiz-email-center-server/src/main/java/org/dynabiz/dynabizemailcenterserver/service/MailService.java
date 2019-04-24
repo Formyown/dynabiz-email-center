@@ -7,7 +7,6 @@ import org.dynabiz.dynabizemailcenterserver.repository.MailTemplateTestDataRepos
 import org.dynabiz.dynabizemailcenterserver.vos.dto.SendEmailTransfer;
 import org.dynabiz.dynabizemailcenterserver.vos.entity.MailTemplateTestData;
 import org.dynabiz.std.exception.RepositoryException;
-import org.dynabiz.util.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -31,14 +30,13 @@ public class MailService {
     }
 
     public void sendTestData(String id){
-        MailTemplateTestData testData = Assert.notNull(testDataRepository.findById(id), RepositoryException.ITEM_NOT_FOUND);
+
+        MailTemplateTestData testData = testDataRepository.findById(id).orElseThrow(()->RepositoryException.ITEM_NOT_FOUND);
         SendEmailTransfer data = new SendEmailTransfer();
         data.setEmail(testData.getEmail());
         data.setData(testData.getData());
         data.setName(testData.getName());
-
         sendEmail(data);
-
     }
 
     public MailService(StringRedisTemplate template,

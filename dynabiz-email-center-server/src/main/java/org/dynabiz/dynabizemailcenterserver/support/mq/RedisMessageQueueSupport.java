@@ -2,7 +2,8 @@ package org.dynabiz.dynabizemailcenterserver.support.mq;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.dynabiz.dynabizemailcenterserver.support.mail.MailSendingHandler;
+import org.dynabiz.dynabizemailcenterserver.service.MailSendingRequestHandler;
+import org.dynabiz.dynabizemailcenterserver.support.mail.MailSender;
 import org.dynabiz.dynabizemailcenterserver.vos.MailSendingRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,9 +17,9 @@ public class RedisMessageQueueSupport extends AbstractMailMessageQueue {
     private ObjectMapper mapper;
 
 
-    public RedisMessageQueueSupport(MailSendingHandler mailSendingHandler, StringRedisTemplate template,
+    public RedisMessageQueueSupport(MailSendingRequestHandler handler, StringRedisTemplate template,
                                     ObjectMapper mapper) {
-        super(mailSendingHandler);
+        super(handler);
         this.template = template;
         this.mapper = mapper;
 

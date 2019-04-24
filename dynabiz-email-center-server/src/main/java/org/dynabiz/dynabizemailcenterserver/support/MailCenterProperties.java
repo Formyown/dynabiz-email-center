@@ -20,6 +20,22 @@ public class MailCenterProperties {
         }
     }
 
-    public String address;
-    public LogLevel logLevel;
+    private String from;
+    private LogLevel logLevel;
+
+    public String getFrom() {
+        return from;
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
+    }
+
+    public LogLevel getLogLevel() {
+        return logLevel;
+    }
+
+    public void setLogLevel(LogLevel logLevel) {
+        this.logLevel = logLevel;
+    }
 }
