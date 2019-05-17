@@ -1,7 +1,7 @@
 package org.dynabiz.mailcenterserver.configuration;
 
 import org.dynabiz.mailcenterserver.configuration.auto.MailSenderAutoConfiguration;
-import org.dynabiz.mailcenterserver.controller.MailMessageController;
+import org.dynabiz.mailcenterserver.controller.MessageRequestController;
 import org.dynabiz.mailcenterserver.controller.TemplateTestController;
 import org.dynabiz.mailcenterserver.service.MailService;
 import org.dynabiz.mailcenterserver.service.TemplateService;
@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Import;
 
 @Configuration
 @Import({MailService.class, TemplateService.class, TemplateTestService.class,
-        MailMessageController.class, MailTemplate.class, TemplateTestController.class,
+        MessageRequestController.class, MailTemplate.class, TemplateTestController.class,
         MailCenterProperties.class, MailSenderAutoConfiguration.class})
 public class MailServerConfiguration {
 
