@@ -13,7 +13,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 @Configuration
 public class MailSenderAutoConfiguration {
     @Bean
-    @ConditionalOnBean(JavaMailSender.class)
+    //@ConditionalOnBean(JavaMailSender.class)
     public MailSender mailSender(JavaMailSender javaMailSender, MailCenterProperties properties){
         return new JMSMailSenderSupport(javaMailSender, properties);
     }
